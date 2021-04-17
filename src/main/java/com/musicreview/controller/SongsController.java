@@ -46,7 +46,7 @@ public class SongsController {
         }
     }
 
-    @DeleteMapping("/tutorials/{id}")
+    @DeleteMapping("/update/{id}")
     public ResponseEntity<?> deleteTutorial(@PathVariable("id") String id) {
         logger.info("Songs Controller : {DELETE BY ID}", id);
         MessageResponse messageResponse = new MessageResponse();
