@@ -1,0 +1,10 @@
+#Details
+Request Type: POST
+Request URL: http://localhost:8082/songs/add
+Request Body :
+{
+    "name":"It's My Life",
+    "artistName":"Bon Jovi",
+    "countryArea":"USA"
+}
+

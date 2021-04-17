@@ -1,4 +1,4 @@
-package com.musicreview.staging;
+package com.musicreview;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
