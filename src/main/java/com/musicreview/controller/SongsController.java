@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/songs")
 public class SongsController {
@@ -70,6 +70,5 @@ public class SongsController {
             messageResponse.setMessage("No Songs Available");
             return new ResponseEntity<>(messageResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 }
