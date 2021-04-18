@@ -46,8 +46,8 @@ public class SongsController {
         }
     }
 
-    @DeleteMapping("/update/{id}")
-    public ResponseEntity<?> deleteTutorial(@PathVariable("id") String id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteSong(@PathVariable("id") String id) {
         logger.info("Songs Controller : {DELETE BY ID}", id);
         MessageResponse messageResponse = new MessageResponse();
         if (songsService.deleteById(id)) {
@@ -60,7 +60,7 @@ public class SongsController {
     }
 
     @DeleteMapping("/delete/songs")
-    public ResponseEntity<?> deleteAllTutorials() {
+    public ResponseEntity<?> deleteAllSongs() {
         logger.info("Songs Controller : {DELETE ALL}");
         MessageResponse messageResponse = new MessageResponse();
         if (songsService.deleteAll()) {

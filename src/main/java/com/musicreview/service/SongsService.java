@@ -31,6 +31,7 @@ public class SongsService {
     }
 
     public boolean updateById(String id, SongsDTO songsDTO) {
+        logger.info("Inside SongsService layer!! - [Update Songs By Id]");
         Optional<Songs> findSongById = songsRepository.findById(id);
         if (findSongById.isPresent()) {
             Songs _songs = findSongById.get();
@@ -45,6 +46,7 @@ public class SongsService {
     }
 
     public boolean deleteAll() {
+        logger.info("Inside SongsService layer!! - [Delete All Songs]");
         try {
             songsRepository.deleteAll();
             return true;
@@ -55,6 +57,7 @@ public class SongsService {
     }
 
     public boolean deleteById(String id) {
+        logger.info("Inside SongsService layer!! - [Delete Songs By Id]");
         Optional<Songs> findById = songsRepository.findById(id);
         if (findById.isPresent()) {
             songsRepository.deleteById(id);

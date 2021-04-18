@@ -1,0 +1,64 @@
+
+#Details
+Request Type: POST
+Request URL: http://localhost:8082/albums/create
+Request Body :
+{
+    "title": "Tashan",
+    "launchYear": 2008,
+    "genre": "Bollywood",
+    "songs": [
+        {
+            "name": "Dil Haara",
+            "artistName": "Sukhwinder Singh",
+            "countryArea": "India"
+        },
+        {
+            "name": "Chhaliya",
+            "artistName": "Sunidhi Chauhan",
+            "countryArea": "India"
+        },
+        {
+            "name": "Jimmy ka Tashan",
+            "artistName": "Vijay Krishan Acharya",
+            "countryArea": "India"
+        },
+        {
+            "name": "Pooja Ka Tashan",
+            "artistName": "Vijay Krishan Acharya",
+            "countryArea": "India"
+        },
+        {
+            "name": "Bhaiyyaji ka Tashan",
+            "artistName": "Vijay Krishan Acharya",
+            "countryArea": "India"
+        },
+        {
+            "name": "Falak",
+            "artistName": "Udit Narayan",
+            "countryArea": "India"
+        },
+        {
+            "name": "Tashan Mein",
+            "artistName": "Master Saleem",
+            "countryArea": "India"
+        },
+        {
+            "name": "Dil Dance Maare",
+            "artistName": "Sukhwinder Singh",
+            "countryArea": "India"
+        }
+    ],
+    "artists": [
+        "Sukhwinder Singh",
+        "Master Saleem",
+        "Sunidhi Chauhan",
+        "Piyush Mishra",
+        "Vishal-Shekhar",
+        "Udit Narayan",
+        "Vijay Krishan Acharya"
+    ],
+    "releasedBy": [
+        "Yash Raj Music"
+    ]
+}
