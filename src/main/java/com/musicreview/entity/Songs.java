@@ -1,12 +1,18 @@
 package com.musicreview.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 
 @Document(collection = "songs")
 public class Songs {
+
+    @Id
+    private String id;
+
     @NotBlank
     @Size(max = 50)
     private String name;
@@ -27,6 +33,13 @@ public class Songs {
         this.countryArea = countryArea;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -54,7 +67,8 @@ public class Songs {
 
     @Override
     public String toString() {
-        return "{" +
+        return "Songs{" +
+                "_id=" + id +
                 ", name='" + name + '\'' +
                 ", artistName='" + artistName + '\'' +
                 ", countryArea='" + countryArea + '\'' +

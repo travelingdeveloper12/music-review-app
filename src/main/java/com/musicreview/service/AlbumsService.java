@@ -1,16 +1,20 @@
 package com.musicreview.service;
 
 import com.musicreview.dto.AlbumsDTO;
+import com.musicreview.dto.ReviewsDTO;
 import com.musicreview.dto.SongsDTO;
 import com.musicreview.entity.Albums;
+import com.musicreview.entity.Reviews;
 import com.musicreview.entity.Songs;
 import com.musicreview.repository.AlbumsRepository;
+import com.musicreview.repository.ReviewsRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +25,9 @@ public class AlbumsService {
 
     @Autowired
     private AlbumsRepository albumsRepository;
+
+    @Autowired
+    private ReviewsRepository reviewsRepository;
 
     public void save(AlbumsDTO albumsDTO) {
         logger.info("Inside AlbumService layer!! - [Create Album]");
@@ -38,9 +45,37 @@ public class AlbumsService {
         albumsRepository.save(albums);
     }
 
-    public List<Albums> findAll(){
+    public List<Albums> findAll() {
         logger.info("Inside AlbumService layer!! - [GET-ALL Albums]");
-      return  albumsRepository.findAll();
+        return albumsRepository.findAll();
+    }
+
+    public Albums findAlbumById(String albumId) {
+        logger.info("Inside AlbumService layer!! - [GET-ALBUM BY ID]");
+        return albumsRepository.findById(albumId).get();
+    }
+
+    public void updateAlbumReview(String id, ReviewsDTO reviews) {
+        logger.info("Inside AlbumService layer!! - [UPDATE Albums for Review By Id]");
+
+        Optional<Albums> findAlbumsById = albumsRepository.findById(id);
+        Reviews albumReview = new Reviews();
+        albumReview.setReviewedBy(reviews.getReviewedBy());
+        albumReview.setReview(reviews.getReview());
+        albumReview.setReviewOn(new Date());
+        List<Reviews> reviewsList = new ArrayList<>();
+        reviewsList.add(albumReview);
+        Albums albums = findAlbumsById.get();
+        if(albums.getReviews().size() == 0){
+            albums.setReviews(reviewsList);
+        }else{
+           List<Reviews> rev = albums.getReviews();
+           rev.add(albumReview);
+           albums.setReviews(rev);
+        }
+        albumsRepository.save(albums);
+        albumReview.setAlbumId(albums.getId());
+        reviewsRepository.save(albumReview);
     }
 
     public boolean updateById(String id, AlbumsDTO albumsDTO) {

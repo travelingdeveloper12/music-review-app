@@ -30,6 +30,11 @@ public class SongsService {
         return songsRepository.findAll();
     }
 
+    public Songs getSongById(String songId) {
+        logger.info("Inside SongsService layer!! - [Get Songs By ID]");
+        return songsRepository.findById(songId).get();
+    }
+
     public boolean updateById(String id, SongsDTO songsDTO) {
         logger.info("Inside SongsService layer!! - [Update Songs By Id]");
         Optional<Songs> findSongById = songsRepository.findById(id);

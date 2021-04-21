@@ -26,6 +26,12 @@ public class AlbumController {
         return new ResponseEntity<>(albumsService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAlbumById(@PathVariable("id") String id){
+        logger.info("Albums Controller : {GET ALBUM - BY ID}");
+        return new ResponseEntity<>(albumsService.findAlbumById(id), HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> add(@RequestBody AlbumsDTO albumsDTO) {
         logger.info("Albums Controller : {POST}", albumsDTO.toString());
@@ -39,7 +45,12 @@ public class AlbumController {
     public ResponseEntity<?> update(@PathVariable("id") String id, @RequestBody AlbumsDTO albumsDTO) {
         logger.info("Albums Controller : {PUT}", albumsDTO.toString());
         MessageResponse messageResponse = new MessageResponse();
-        if (albumsService.updateById(id, albumsDTO)) {
+        if(albumsDTO.getReview()!=null){
+            messageResponse.setMessage("Album Review Updated Successfully. Updated on : " + System.currentTimeMillis());
+            albumsService.updateAlbumReview(id, albumsDTO.getReview());
+            return new ResponseEntity<>(messageResponse.getMessage(), HttpStatus.OK);
+        }
+        else if (albumsService.updateById(id, albumsDTO)) {
             messageResponse.setMessage("Album Update Successful. Updated on : " + System.currentTimeMillis());
             return new ResponseEntity<>(messageResponse.getMessage(), HttpStatus.OK);
         } else {
@@ -61,7 +72,7 @@ public class AlbumController {
     }
 
     @DeleteMapping("/delete/albums")
-    public ResponseEntity<?> deleteAllTutorials() {
+    public ResponseEntity<?> deleteAlbums() {
         logger.info("Albums Controller : {DELETE ALL}");
         MessageResponse messageResponse = new MessageResponse();
         if (albumsService.deleteAll()) {

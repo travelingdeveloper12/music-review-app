@@ -16,6 +16,8 @@ public class AlbumsDTO {
 
     private List<String> releasedBy;
 
+    private ReviewsDTO review;
+
     public AlbumsDTO() {
     }
 
@@ -74,5 +76,13 @@ public class AlbumsDTO {
 
     public void setReleasedBy(List<String> releasedBy) {
         this.releasedBy = releasedBy;
+    }
+
+    public ReviewsDTO getReview() {
+        return review;
+    }
+
+    public void setReview(ReviewsDTO review) {
+        this.review = review;
     }
 }

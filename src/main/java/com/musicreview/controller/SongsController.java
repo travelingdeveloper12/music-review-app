@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/songs")
@@ -23,6 +24,12 @@ public class SongsController {
     public ResponseEntity<?> get() {
         logger.info("Songs Controller : {GET ALL}");
         return new ResponseEntity<>(songsService.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getSongById(@PathVariable("id") String id) {
+        logger.info("Songs Controller : {GET BY ID}");
+        return new ResponseEntity<>(songsService.getSongById(id), HttpStatus.OK);
     }
 
     @PostMapping("/add")

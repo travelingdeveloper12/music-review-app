@@ -1,5 +1,6 @@
 package com.musicreview.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotBlank;
@@ -8,6 +9,9 @@ import java.util.List;
 
 @Document(collection = "albums")
 public class Albums {
+
+    @Id
+    private String id;
 
     @NotBlank
     @Size(max = 50)
@@ -28,7 +32,7 @@ public class Albums {
     @NotBlank
     private List<String> releasedBy;
 
-    private String albumReview;
+    private List<Reviews> reviews;
 
     public Albums() {
     }
@@ -40,6 +44,14 @@ public class Albums {
         this.songs = songs;
         this.artists = artists;
         this.releasedBy = releasedBy;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -90,24 +102,26 @@ public class Albums {
         this.releasedBy = releasedBy;
     }
 
-    public String getAlbumReview() {
-        return albumReview;
+    public List<Reviews> getReviews() {
+        return reviews;
     }
 
-    public void setAlbumReview(String albumReview) {
-        this.albumReview = albumReview;
+    public void setReviews(List<Reviews> reviews) {
+        this.reviews = reviews;
     }
 
     @Override
     public String toString() {
-        return "Albums{" +
-                "title='" + title + '\'' +
+        return "{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
                 ", launchYear=" + launchYear +
                 ", genre='" + genre + '\'' +
                 ", songs=" + songs +
                 ", artists=" + artists +
                 ", releasedBy=" + releasedBy +
-                ", albumReview='" + albumReview + '\'' +
+                ", reviews=" + reviews +
                 '}';
     }
 }
+
